@@ -63,12 +63,12 @@ def ui():
 ui()
 
 # Load models
-faceProto = "opencv_face_detector.pbtxt"
-faceModel = "opencv_face_detector_uint8.pb"
-ageProto = "age_deploy.prototxt"
-ageModel = "age_net.caffemodel"
-genderProto = "gender_deploy.prototxt"
-genderModel = "gender_net.caffemodel"
+faceProto = r"models/opencv_face_detector.pbtxt"
+faceModel = r"models/opencv_face_detector_uint8.pb"
+ageProto = r"models/age_deploy.prototxt"
+ageModel = r"models/age_net.caffemodel"
+genderProto = r"models/gender_deploy.prototxt"
+genderModel = r"models/gender_net.caffemodel"
 
 MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 ageList = ['(0-2)', '(4-6)', '(8-12)', '(15-20)', '(25-32)', '(38-43)', '(48-53)', '(60-100)']
@@ -102,9 +102,9 @@ def highlightFace(net, frame, conf_threshold=0.7):
 def detect_age_gender(image):
     # Ensure image is in RGB format
     if image.shape[2] == 4:
-        image = cv2.cvtColor(image, cv2.COLOR_RGBA2RGB)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     elif len(image.shape) == 2:
-        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     
     padding = 20
     resultImg, faceBoxes = highlightFace(faceNet, image)
