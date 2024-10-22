@@ -129,7 +129,7 @@ def detect_age_gender(image):
         agePreds = ageNet.forward()
         age = ageList[agePreds[0].argmax()]
         
-        label = f'{gender}, {age}'
+        label = f'{age}'
         cv2.putText(resultImg, label, (faceBox[0], faceBox[1]-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2, cv2.LINE_AA)
         results.append(label)
     
